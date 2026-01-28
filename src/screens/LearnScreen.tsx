@@ -9,9 +9,10 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import * as Speech from 'expo-speech';
-import { ArrowLeft, Volume2 } from 'lucide-react-native';
+import { Volume2 } from 'lucide-react-native';
 import { colors, spacing, borderRadius, typography } from '../constants/theme';
 import { linkingTypes } from '../constants/linkingTypes';
+import { Header } from '../components';
 
 type RootStackParamList = {
   Home: undefined;
@@ -37,17 +38,7 @@ export default function LearnScreen({ navigation }: LearnScreenProps) {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* Header */}
-        <View style={styles.header}>
-          <TouchableOpacity
-            style={styles.headerButton}
-            onPress={() => navigation.goBack()}
-          >
-            <ArrowLeft size={20} color={colors.textPrimary} />
-          </TouchableOpacity>
-          <Text style={styles.headerTitle}>Learn</Text>
-          <View style={styles.headerButton} />
-        </View>
+        <Header title="Learn" onBack={() => navigation.goBack()} />
 
         <Text style={styles.introText}>
           Tap any example to hear how the words link together in natural speech.
@@ -103,29 +94,6 @@ const styles = StyleSheet.create({
   scrollContent: {
     padding: spacing.xl,
     gap: spacing.xl,
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  headerButton: {
-    width: 40,
-    height: 40,
-    backgroundColor: colors.bgSurface,
-    borderRadius: borderRadius.md,
-    alignItems: 'center',
-    justifyContent: 'center',
-    shadowColor: '#1A1918',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.03,
-    shadowRadius: 6,
-    elevation: 1,
-  },
-  headerTitle: {
-    fontSize: typography.sizes.headline,
-    fontWeight: typography.weights.semibold,
-    color: colors.textPrimary,
   },
   introText: {
     fontSize: typography.sizes.body,
